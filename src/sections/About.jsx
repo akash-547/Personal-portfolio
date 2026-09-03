@@ -3,23 +3,27 @@ import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
 const highlights = [
   {
     icon: Code2,
-    title: "Clean Code",
-    description: "Writing scalable and maintainable code with best practices.",
+    title: "Full-Stack Engineering",
+    description:
+      "Building clean, scalable, and production-ready web applications with modern full-stack technologies.",
   },
   {
     icon: Rocket,
-    title: "Performance",
-    description: "Building fast and optimized web applications for better UX.",
+    title: "SaaS & MVP Development",
+    description:
+      "Turning ideas and AI-generated prototypes into reliable SaaS products and production-ready MVPs.",
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "Working with teams to turn ideas into real-world products.",
+    title: "Production-Ready Solutions",
+    description:
+      "Helping founders, startups, and growing teams build applications that are ready for real users and business growth.",
   },
   {
     icon: Lightbulb,
-    title: "Continuous Learning",
-    description: "Always learning new technologies and improving my skills.",
+    title: "AI-Powered Development",
+    description:
+      "Combining AI-driven rapid development with solid engineering to build faster without compromising quality.",
   },
 ];
 
@@ -37,38 +41,44 @@ export const About = () => {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100 text-secondary-foreground">
-              Building the web experiences,
+              Turning AI prototypes into,
               <span className="font-serif italic font-normal text-white">
                 {" "}
-                one component at a time.
+                production-ready products.
               </span>
             </h2>
 
             <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
               <p>
-                I'm a passionate Frontend Developer with around 2 years of
-                experience building responsive and user-friendly web
-                applications. My journey started with curiosity about how
-                websites work, and it has grown into a strong focus on modern
-                frontend development.
+                I'm an AI Full-Stack Developer specializing in building
+                production-ready SaaS products, MVPs, and AI-powered web
+                applications. I combine AI-driven rapid development with solid
+                full-stack engineering to turn ideas and prototypes into
+                reliable products built for real users.
               </p>
+
               <p>
-                I specialize in React and modern JavaScript, creating clean,
-                scalable, and visually appealing interfaces. I enjoy turning
-                ideas into real products while maintaining a strong focus on
-                UI/UX and performance.
+                I specialize in Lovable.dev, Base44, and Supabase, along with
+                React, Next.js, TypeScript, PostgreSQL, Node.js, and modern
+                cloud technologies. My focus goes beyond simply writing code —
+                I build clean architecture, secure authentication, scalable
+                databases, responsive interfaces, and reliable integrations.
               </p>
+
               <p>
-                Currently, I'm working as a frontend intern, continuously
-                improving my skills and exploring new technologies to build
-                better and more efficient applications.
+                I work with founders, startups, and growing teams to launch new
+                MVPs, complete unfinished AI-built projects, improve existing
+                applications, and prepare products for production. Whether it's
+                building from scratch or rescuing a broken prototype, I focus
+                on delivering fast, maintainable, and scalable solutions.
               </p>
             </div>
 
             <div className="glass rounded-2xl p-6 glow-border animate-fade-in animation-delay-300">
               <p className="text-lg font-medium italic text-foreground">
-                "My mission is to build modern, user-focused web applications
-                that are fast, scalable, and enjoyable to use."
+                "My mission is to turn ideas and AI-generated prototypes into
+                secure, scalable, and production-ready products that create
+                real business value."
               </p>
             </div>
           </div>

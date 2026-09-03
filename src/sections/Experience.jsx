@@ -1,20 +1,40 @@
 const experiences = [
   {
     period: "2026 — Present",
-    role: "Senior Frontend Engineer",
-    company: "Axionix",
+    role: "Senior AI Full-Stack Developer",
+    company: "Axionix X Pvt Ltd",
     description:
-      "Working on building modern and responsive web applications using React. Focused on creating clean UI components, improving performance, and enhancing user experience.",
-    technologies: ["React", "JavaScript", "Tailwind CSS"],
+      "Building production-ready AI-powered web applications, SaaS products, and MVPs using modern full-stack technologies. Focused on scalable architecture, secure authentication, database integration, API development, performance optimization, and reliable deployment.",
+    technologies: [
+      "Lovable.dev",
+      "Base44",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "OpenAI",
+      "Node.js",
+      "Tailwind CSS",
+      "Vercel",
+    ],
     current: true,
   },
   {
     period: "2025",
-    role: "Frontend Intern",
-    company: "Binary Hub",
+    role: "Senior Frontend Developer",
+    company: "Binary Hub Technologies",
     description:
-      "Assisted in developing responsive user interfaces and reusable components. Gained hands-on experience with React, Git, and real-world project workflows.",
-    technologies: ["React", "JavaScript", "CSS", "Git"],
+      "Developed modern and responsive user interfaces with a focus on clean design, reusable components, performance, and user experience. Worked with React and modern frontend development workflows to build reliable web applications.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Tailwind CSS",
+      "Git",
+      "GitHub",
+    ],
     current: false,
   },
 ];
@@ -52,8 +72,9 @@ export const Experience = () => {
             className="text-muted-foreground
            animate-fade-in animation-delay-200"
           >
-            A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+            A journey from frontend development to building AI-powered,
+            scalable full-stack applications, SaaS products, and production-ready
+            digital solutions.
           </p>
         </div>
 

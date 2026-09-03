@@ -1,39 +1,41 @@
+
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+
 const projects = [
   {
-    title: "Finance Dashboard UI",
+    title: "Modern React Web Application",
     description:
-      "A responsive finance dashboard built with React, featuring data visualization, clean UI, and interactive components.",
+      "A responsive web application built with React, focusing on clean component architecture, modern UI, reusable components, and a smooth user experience.",
     image: "/projects/project1.png",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
+    tags: ["React", "TypeScript", "Tailwind CSS"],
     link: "#",
     github: "https://github.com/akash-547",
   },
   {
-    title: "E-Commerce Web App",
+    title: "Next.js Web Application",
     description:
-      "A modern e-commerce frontend with product listings, filtering, and responsive design for seamless user experience.",
+      "A modern web application built with Next.js, featuring responsive design, reusable components, optimized performance, and a production-focused frontend.",
     image: "/projects/project2.png",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
-    link: "#",
+    tags: ["Next.js", "React", "TypeScript"],
+    link: "#",  
     github: "https://github.com/akash-547",
   },
   {
-    title: "AI Content Tool",
+    title: "AI-Powered Web Application",
     description:
-      "A simple AI-powered content generator using modern UI, integrating external APIs for dynamic content generation.",
+      "An AI-powered web application combining modern frontend development with API integration to deliver a clean, responsive, and interactive user experience.",
     image: "/projects/project3.png",
-    tags: ["React", "API Integration", "Tailwind CSS"],
+    tags: ["React", "OpenAI", "API Integration"],
     link: "#",
     github: "https://github.com/akash-547",
   },
   {
-    title: "Task Management App",
+    title: "SaaS & MVP Prototype",
     description:
-      "A task management interface with interactive UI, allowing users to create, update, and organize tasks efficiently.",
+      "A rapid SaaS/MVP prototype built with modern AI development tools, designed to transform product ideas into functional and user-ready web applications.",
     image: "/projects/project4.png",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
+    tags: ["Lovable.dev", "Supabase", "SaaS"],
     link: "#",
     github: "https://github.com/akash-547",
   },
@@ -45,12 +47,14 @@ export const Projects = () => {
       {/* Bg glows */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
+
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mx-auto max-w-3xl mb-16">
           <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
             Featured Work
           </span>
+
           <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
             Projects that
             <span className="font-serif italic font-normal text-white">
@@ -58,10 +62,11 @@ export const Projects = () => {
               deliver real impact.
             </span>
           </h2>
+
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            A selection of my work showcasing modern frontend development,
-            responsive design, and real-world problem solving using React and
-            modern web technologies.
+            A selection of my work showcasing AI-powered applications, SaaS
+            prototypes, modern frontend development, and production-focused
+            web solutions built with modern technologies.
           </p>
         </div>
 
@@ -80,11 +85,13 @@ export const Projects = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+
                 <div
                   className="absolute inset-0 
                 bg-gradient-to-t from-card via-card/50
                  to-transparent opacity-60"
                 />
+
                 {/* Overlay Links */}
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
@@ -93,6 +100,7 @@ export const Projects = () => {
                   >
                     <ArrowUpRight className="w-5 h-5" />
                   </a>
+
                   <a
                     href={project.github}
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
@@ -108,6 +116,7 @@ export const Projects = () => {
                   <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
+
                   <ArrowUpRight
                     className="w-5 h-5 
                   text-muted-foreground group-hover:text-primary
@@ -115,9 +124,11 @@ export const Projects = () => {
                    group-hover:-translate-y-1 transition-all"
                   />
                 </div>
+
                 <p className="text-muted-foreground text-sm">
                   {project.description}
                 </p>
+
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIdx) => (
                     <span
@@ -144,3 +155,4 @@ export const Projects = () => {
     </section>
   );
 };
+
