@@ -10,9 +10,25 @@ import { SiUpwork } from "react-icons/si";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
-  "HTML", "CSS", "JavaScript", "React", "TypeScript", 
-  "Tailwind CSS", "Node.js", "MongoDB", "Git", 
-  "GitHub", "GitHub Actions", "Figma", "AI Tools (Lovable, Cursor)"
+  "Lovable.dev",
+  "Base44",
+  "Replit",
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Tailwind CSS",
+  "Supabase",
+  "PostgreSQL",
+  "Node.js",
+  "Express",
+  "OpenAI",
+  "LangChain",
+  "CrewAI",
+  "Vercel",
+  "GitHub Actions",
+  "Railway",
+  "Docker",
+  "Stripe"
 ];
 
 export const Hero = () => {
@@ -53,25 +69,26 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Frontend Developer • React Specialist
+                AI Full-Stack Developer • SaaS & MVP Expert
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting <span className="text-primary glow-text">modern</span>
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold leading-tight animate-fade-in animation-delay-100">
+                Building <span className="text-primary glow-text">AI-powered</span>
                 <br />
-                web experiences with
+                SaaS & MVPs with
                 <span className="font-serif italic px-4 font-normal text-white">
                   precision.
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Akash Hussain — a Frontend Developer specializing in
-                React. I build modern, responsive, and user-friendly web
-                applications with a focus on clean UI and smooth user
-                experience.
+                Hi, I'm Akash Hussain — an AI Full-Stack Developer specializing
+                in SaaS, MVPs, and AI-powered web applications. I build
+                production-ready applications with scalable architecture,
+                secure authentication, reliable databases, and seamless user
+                experiences.
               </p>
             </div>
 
@@ -115,7 +132,7 @@ export const Hero = () => {
                 <img
                   src="/profile-photo.png"
                   alt="Akash Hussain"
-                  className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  className="w-full aspect-[2.1/3] object-cover rounded-2xl"
                 />
 
                 {/* Floating Badge */}
@@ -125,6 +142,7 @@ export const Hero = () => {
                     <span className="text-sm font-medium">Available for work</span>
                   </div>
                 </div>
+
                 {/* Stats Badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">2+</div>
