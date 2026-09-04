@@ -38,31 +38,31 @@ const projects = [
     link: "https://style-book-one.vercel.app/",
     github: "https://github.com/akash-547/your-repo",
   },
-{
-  title: "AI-Powered SaaS Dashboard",
-  description:
-    "A production-focused SaaS dashboard prototype built with Lovable.dev and Supabase, combining AI-powered rapid development with modern full-stack engineering. The application includes a responsive dashboard interface, secure authentication, database integration, reusable UI components, and scalable data-driven functionality designed for real-world SaaS products and MVPs.",
-  image: "/projects/project3.png",
-  tags: [
-    "Lovable.dev",
-    "Supabase",
-    "SaaS",
-    "AI Development",
-    "AI-Powered Applications",
-    "Rapid Prototyping",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Authentication",
-    "PostgreSQL",
-    "Database Architecture",
-    "API Integration",
-    "Responsive Design",
-    "Dashboard Development"
-  ],
-  link: "https://router-pro.vercel.app/dashboard",
-  github: "https://github.com/akash-547",
-},
+  {
+    title: "AI-Powered SaaS Dashboard",
+    description:
+      "A production-focused SaaS dashboard prototype built with Lovable.dev and Supabase, combining AI-powered rapid development with modern full-stack engineering. The application includes a responsive dashboard interface, secure authentication, database integration, reusable UI components, and scalable data-driven functionality designed for real-world SaaS products and MVPs.",
+    image: "/projects/project3.png",
+    tags: [
+      "Lovable.dev",
+      "Supabase",
+      "SaaS",
+      "AI Development",
+      "AI-Powered Applications",
+      "Rapid Prototyping",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Authentication",
+      "PostgreSQL",
+      "Database Architecture",
+      "API Integration",
+      "Responsive Design",
+      "Dashboard Development",
+    ],
+    link: "https://router-pro.vercel.app/dashboard",
+    github: "https://github.com/akash-547",
+  },
   {
     title: "User-Friendly SaaS Interface",
     description:
@@ -183,10 +183,16 @@ export const Projects = () => {
 
         {/* View All CTA */}
         <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton>
-            View All Projects
-            <ArrowUpRight className="w-5 h-5" />
-          </AnimatedBorderButton>
+          <a
+            href="https://vercel.com/akash-hussains-projects"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <AnimatedBorderButton>
+              View All Projects
+              <ArrowUpRight className="w-5 h-5" />
+            </AnimatedBorderButton>
+          </a>
         </div>
       </div>
     </section>
