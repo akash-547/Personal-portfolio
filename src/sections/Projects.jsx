@@ -1,43 +1,76 @@
-
 import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 
 const projects = [
   {
-    title: "Modern React Web Application",
+    title: "Modern E-Commerce Web Application",
     description:
-      "A responsive web application built with React, focusing on clean component architecture, modern UI, reusable components, and a smooth user experience.",
+      "A modern and fully responsive e-commerce web application built with Next.js, React, and Tailwind CSS. Users can browse products, explore categories, view product details, and shop through a clean and intuitive interface. The application focuses on responsive UI, smooth navigation, reusable components, optimized performance, and a seamless shopping experience across desktop and mobile devices.",
     image: "/projects/project1.png",
-    tags: ["React", "TypeScript", "Tailwind CSS"],
-    link: "#",
-    github: "https://github.com/akash-547",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "E-Commerce",
+      "Responsive Design",
+      "UI/UX",
+      "Product Catalog",
+      "API Integration",
+      "Frontend Development",
+      "Web Development",
+    ],
+    link: "https://repairfect-ecommerce.vercel.app/",
+    github: "https://github.com/akash-547/Repairfect-ecommerce",
   },
   {
-    title: "Next.js Web Application",
+    title: "AI-Powered Appointment Booking SaaS",
     description:
-      "A modern web application built with Next.js, featuring responsive design, reusable components, optimized performance, and a production-focused frontend.",
+      "A modern and fully responsive SaaS appointment booking platform built with React and Tailwind CSS. Users can discover local self-care businesses, select services, choose a location and time, and book appointments through a clean and intuitive interface. The platform is designed with scalable SaaS architecture and AI-ready features for smarter service discovery and personalized booking experiences.",
     image: "/projects/project2.png",
-    tags: ["Next.js", "React", "TypeScript"],
-    link: "#",  
-    github: "https://github.com/akash-547",
+    tags: [
+      "React",
+      "Tailwind CSS",
+      "SaaS",
+      "AI Integration",
+      "Responsive Design",
+    ],
+    link: "https://style-book-one.vercel.app/",
+    github: "https://github.com/akash-547/your-repo",
   },
+{
+  title: "AI-Powered SaaS Dashboard",
+  description:
+    "A production-focused SaaS dashboard prototype built with Lovable.dev and Supabase, combining AI-powered rapid development with modern full-stack engineering. The application includes a responsive dashboard interface, secure authentication, database integration, reusable UI components, and scalable data-driven functionality designed for real-world SaaS products and MVPs.",
+  image: "/projects/project3.png",
+  tags: [
+    "Lovable.dev",
+    "Supabase",
+    "SaaS",
+    "AI Development",
+    "AI-Powered Applications",
+    "Rapid Prototyping",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Authentication",
+    "PostgreSQL",
+    "Database Architecture",
+    "API Integration",
+    "Responsive Design",
+    "Dashboard Development"
+  ],
+  link: "https://router-pro.vercel.app/dashboard",
+  github: "https://github.com/akash-547",
+},
   {
-    title: "AI-Powered Web Application",
+    title: "User-Friendly SaaS Interface",
     description:
-      "An AI-powered web application combining modern frontend development with API integration to deliver a clean, responsive, and interactive user experience.",
-    image: "/projects/project3.png",
-    tags: ["React", "OpenAI", "API Integration"],
-    link: "#",
-    github: "https://github.com/akash-547",
-  },
-  {
-    title: "SaaS & MVP Prototype",
-    description:
-      "A rapid SaaS/MVP prototype built with modern AI development tools, designed to transform product ideas into functional and user-ready web applications.",
+      "A fully responsive and user-friendly web application built with HTML5, CSS3, JavaScript, and Tailwind CSS. Designed with a clean, modern interface, reusable components, and a smooth user experience across mobile, tablet, and desktop devices.",
     image: "/projects/project4.png",
-    tags: ["Lovable.dev", "Supabase", "SaaS"],
-    link: "#",
-    github: "https://github.com/akash-547",
+    tags: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
+    link: "https://axionix-figma.vercel.app/",
+    github: "https://github.com/akash-547/AxionixFigma",
   },
 ];
 
@@ -65,8 +98,8 @@ export const Projects = () => {
 
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
             A selection of my work showcasing AI-powered applications, SaaS
-            prototypes, modern frontend development, and production-focused
-            web solutions built with modern technologies.
+            prototypes, modern frontend development, and production-focused web
+            solutions built with modern technologies.
           </p>
         </div>
 
@@ -96,6 +129,8 @@ export const Projects = () => {
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
                     href={project.link}
+                    taget="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <ArrowUpRight className="w-5 h-5" />
@@ -103,6 +138,8 @@ export const Projects = () => {
 
                   <a
                     href={project.github}
+                    taget="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     <Github className="w-5 h-5" />
@@ -155,4 +192,3 @@ export const Projects = () => {
     </section>
   );
 };
-
