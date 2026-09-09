@@ -15,8 +15,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "kashhussain512@example.com",
-    href: "mailto:kashhussain512@example.com",
+    value: "kashhussain512@gmail.com",
+    href: "mailto:kashhussain512@gmail.com",
   },
   {
     icon: Phone,
@@ -49,65 +49,104 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Prevent multiple submissions
+    if (isLoading) return;
+
     setIsLoading(true);
 
+    // Clear previous success/error message
     setSubmitStatus({
       type: null,
       message: "",
     });
 
     try {
+      // EmailJS environment variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+      // Check EmailJS configuration
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please add your VITE_EMAILJS_* values to a .env file.",
+          "EmailJS configuration is missing. Please check your .env file."
         );
       }
 
-      emailjs.init({ publicKey });
-
-      const adminPayload = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        user_name: formData.name,
-        user_email: formData.email,
-        reply_to: formData.email,
-      };
-
-      const response = await emailjs.send(serviceId, templateId, adminPayload);
-
-      if (response?.status !== 200) {
-        throw new Error("EmailJS request failed.");
-      }
-
-      setSubmitStatus({
-        type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
+      // Initialize EmailJS
+      emailjs.init({
+        publicKey,
       });
 
+      // Data sent to EmailJS template
+      const templateParams = {
+        from_name: formData.name.trim(),
+        from_email: formData.email.trim(),
+        message: formData.message.trim(),
+
+        // Extra variables if needed in EmailJS
+        user_name: formData.name.trim(),
+        user_email: formData.email.trim(),
+
+        // Client email for Reply-To
+        reply_to: formData.email.trim(),
+      };
+
+      // Send ONLY ONE email to you
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams
+      );
+
+      // Check response
+      if (!response || response.status !== 200) {
+        throw new Error("Email could not be sent. Please try again.");
+      }
+
+      // Success message
+      setSubmitStatus({
+        type: "success",
+        message: "Message sent successfully. Thank you for reaching out!",
+      });
+
+      // Clear form after successful submission
       setFormData({
         name: "",
         email: "",
         message: "",
       });
-    } catch (err) {
-      console.error("EmailJS error:", err);
+    } catch (error) {
+      console.error("EmailJS error:", error);
 
-      const message =
-        err?.text ||
-        err?.message ||
+      const errorMessage =
+        error?.text ||
+        error?.message ||
         "Failed to send message. Please try again later.";
 
       setSubmitStatus({
         type: "error",
-        message,
+        message: errorMessage,
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Remove old status when user starts typing again
+    if (submitStatus.type) {
+      setSubmitStatus({
+        type: null,
+        message: "",
+      });
     }
   };
 
@@ -145,9 +184,12 @@ export const Contact = () => {
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
-          {/* Form */}
+          {/* Contact Form */}
           <div className="glass p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
+            <form
+              className="space-y-5 sm:space-y-6"
+              onSubmit={handleSubmit}
+            >
               {/* Name */}
               <div>
                 <label
@@ -162,14 +204,10 @@ export const Contact = () => {
                   name="name"
                   type="text"
                   required
+                  autoComplete="name"
                   placeholder="Your name..."
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      name: e.target.value,
-                    })
-                  }
+                  onChange={handleInputChange}
                   className="w-full min-w-0 px-4 py-3 text-sm sm:text-base bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                 />
               </div>
@@ -188,14 +226,10 @@ export const Contact = () => {
                   name="email"
                   type="email"
                   required
+                  autoComplete="email"
                   placeholder="your@email.com"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      email: e.target.value,
-                    })
-                  }
+                  onChange={handleInputChange}
                   className="w-full min-w-0 px-4 py-3 text-sm sm:text-base bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                 />
               </div>
@@ -214,19 +248,14 @@ export const Contact = () => {
                   name="message"
                   rows={5}
                   required
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      message: e.target.value,
-                    })
-                  }
                   placeholder="Your message..."
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full min-w-0 px-4 py-3 text-sm sm:text-base bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
                 />
               </div>
 
-              {/* Button */}
+              {/* Submit Button */}
               <Button
                 className="w-full"
                 type="submit"
@@ -234,7 +263,9 @@ export const Contact = () => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <>Sending...</>
+                  <>
+                    Sending...
+                  </>
                 ) : (
                   <>
                     Send Message
@@ -243,7 +274,7 @@ export const Contact = () => {
                 )}
               </Button>
 
-              {/* Status */}
+              {/* Status Message */}
               {submitStatus.type && (
                 <div
                   className={`flex items-start sm:items-center gap-3 p-3 sm:p-4 rounded-xl ${

@@ -57,7 +57,6 @@ export const Contact = () => {
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
@@ -83,19 +82,7 @@ export const Contact = () => {
         throw new Error("EmailJS request failed.");
       }
 
-      if (autoReplyTemplateId) {
-        await emailjs.send(
-          serviceId,
-          autoReplyTemplateId,
-          {
-            to_name: formData.name,
-            to_email: formData.email,
-            from_name: "Kash Hussain",
-            website_name: "Kash Hussain Portfolio",
-          },
-          publicKey
-        );
-      }
+
 
       setSubmitStatus({
         type: "success",
