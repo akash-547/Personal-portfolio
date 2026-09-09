@@ -57,24 +57,45 @@ export const Contact = () => {
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please check your environment variables."
+          "EmailJS configuration is missing. Please add your VITE_EMAILJS_* values to a .env file."
         );
       }
 
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        publicKey
-      );
+      emailjs.init({ publicKey });
+
+      const adminPayload = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        user_name: formData.name,
+        user_email: formData.email,
+        reply_to: formData.email,
+      };
+
+      const response = await emailjs.send(serviceId, templateId, adminPayload);
+
+      if (response?.status !== 200) {
+        throw new Error("EmailJS request failed.");
+      }
+
+      if (autoReplyTemplateId) {
+        await emailjs.send(
+          serviceId,
+          autoReplyTemplateId,
+          {
+            to_name: formData.name,
+            to_email: formData.email,
+            from_name: "Kash Hussain",
+            website_name: "Kash Hussain Portfolio",
+          },
+          publicKey
+        );
+      }
 
       setSubmitStatus({
         type: "success",
@@ -90,11 +111,12 @@ export const Contact = () => {
     } catch (err) {
       console.error("EmailJS error:", err);
 
+      const message =
+        err?.text || err?.message || "Failed to send message. Please try again later.";
+
       setSubmitStatus({
         type: "error",
-        message:
-          err.text ||
-          "Failed to send message. Please try again later.",
+        message,
       });
     } finally {
       setIsLoading(false);

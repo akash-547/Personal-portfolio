@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser";
 import {
   Mail,
   Phone,
@@ -64,25 +63,30 @@ export const Contact = () => {
 
       if (!serviceId || !templateId || !publicKey) {
         throw new Error(
-          "EmailJS configuration is missing. Please check your .env file."
+          "EmailJS configuration is missing. Please add your VITE_EMAILJS_* values to a .env file.",
         );
       }
 
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        publicKey
-      );
+      emailjs.init({ publicKey });
+
+      const adminPayload = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        user_name: formData.name,
+        user_email: formData.email,
+        reply_to: formData.email,
+      };
+
+      const response = await emailjs.send(serviceId, templateId, adminPayload);
+
+      if (response?.status !== 200) {
+        throw new Error("EmailJS request failed.");
+      }
 
       setSubmitStatus({
         type: "success",
-        message:
-          "Message sent successfully! I'll get back to you soon.",
+        message: "Message sent successfully! I'll get back to you soon.",
       });
 
       setFormData({
@@ -93,11 +97,14 @@ export const Contact = () => {
     } catch (err) {
       console.error("EmailJS error:", err);
 
+      const message =
+        err?.text ||
+        err?.message ||
+        "Failed to send message. Please try again later.";
+
       setSubmitStatus({
         type: "error",
-        message:
-          err.text ||
-          "Failed to send message. Please try again later.",
+        message,
       });
     } finally {
       setIsLoading(false);
@@ -117,10 +124,8 @@ export const Contact = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16">
-
           <span className="text-secondary-foreground text-xs sm:text-sm font-medium tracking-wider uppercase animate-fade-in">
             Get In Touch
           </span>
@@ -133,23 +138,16 @@ export const Contact = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed animate-fade-in animation-delay-200 px-2">
-            Have a project in mind? I'd love to hear about it. Send me a
-            message and let's discuss how we can work together.
+            Have a project in mind? I'd love to hear about it. Send me a message
+            and let's discuss how we can work together.
           </p>
-
         </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 max-w-5xl mx-auto">
-
           {/* Form */}
           <div className="glass p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-
-            <form
-              className="space-y-5 sm:space-y-6"
-              onSubmit={handleSubmit}
-            >
-
+            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
               {/* Name */}
               <div>
                 <label
@@ -265,34 +263,28 @@ export const Contact = () => {
                   </p>
                 </div>
               )}
-
             </form>
           </div>
 
           {/* Contact Information */}
           <div className="space-y-5 sm:space-y-6 animate-fade-in animation-delay-400">
-
             <div className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
-
               <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
                 Contact Information
               </h3>
 
               <div className="space-y-3 sm:space-y-4">
-
                 {contactInfo.map((item, i) => (
                   <a
                     key={i}
                     href={item.href}
                     className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl hover:bg-surface transition-colors group"
                   >
-
                     <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       <item.icon className="w-5 h-5 text-primary" />
                     </div>
 
                     <div className="min-w-0">
-
                       <div className="text-xs sm:text-sm text-muted-foreground">
                         {item.label}
                       </div>
@@ -300,38 +292,29 @@ export const Contact = () => {
                       <div className="font-medium text-sm sm:text-base break-all">
                         {item.value}
                       </div>
-
                     </div>
-
                   </a>
                 ))}
-
               </div>
             </div>
 
             {/* Availability */}
             <div className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border border-primary/30">
-
               <div className="flex items-center gap-3 mb-3 sm:mb-4">
-
                 <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full animate-pulse" />
 
                 <span className="font-medium text-sm sm:text-base">
                   Currently Available
                 </span>
-
               </div>
 
               <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
-                I'm currently open to new opportunities and exciting
-                projects. Whether you need a full-time engineer or a
-                freelance consultant, let's talk!
+                I'm currently open to new opportunities and exciting projects.
+                Whether you need a full-time engineer or a freelance consultant,
+                let's talk!
               </p>
-
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
